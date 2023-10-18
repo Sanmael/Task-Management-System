@@ -21,7 +21,7 @@ namespace DataAccess.Repositories
             return await _session.Connection.ExecuteScalarAsync<User>(sql: query, email);
         }
 
-        public async Task<User?> GetUserById(int id)
+        public async Task<User?> GetUserById(long id)
         {
             string query = "SELECT * FROM USER WHERE USERID = @id";
             return await _session.Connection.ExecuteScalarAsync<User>(sql: query, id);

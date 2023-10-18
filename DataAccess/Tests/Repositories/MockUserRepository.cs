@@ -1,45 +1,38 @@
 ﻿using Domain.DomainServices;
 using Domain.Entitys;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Slapper.AutoMapper;
+
 
 namespace DataAccess.Tests.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
-        private readonly IBaseRepository _baseRepository;
-        private readonly MockEntityRepository _entityRepository;
-        public MockUserRepository(IBaseRepository baseRepository, MockEntityRepository mockEntityRepository)
+        private readonly IBaseRepository _baseRepository;        
+        private readonly GetMockRepository<User> _getMockRepository;
+
+        public MockUserRepository(IBaseRepository baseRepository, MockEntityRepository entityRepository)
         {
-            _entityRepository = mockEntityRepository;
             _baseRepository = baseRepository;
+            _getMockRepository = new GetMockRepository<User>(entityRepository);
         }
 
         public Task<User?> GetUserByEmail(string email)
         {
-            List<BaseEntity> entities = _entityRepository.GetAllEntities();
-
-            User? user = entities.OfType<User>().FirstOrDefault(x => x.Email == email);
-
-            return Task.FromResult(user);
+            User? entity = _getMockRepository.FindEntity(x => x.Email == email);
+            return Task.FromResult(entity);
         }
 
-        public Task<User?> GetUserById(int id)
+        public Task<User?> GetUserById(long id)
         {
-            throw new NotImplementedException();
+            User? entity = _getMockRepository.FindEntity(x => x.Id == id);
+            return Task.FromResult(entity);
         }
 
         public Task<User?> GetUserByPhoneNumber(string phone)
         {
-            List<BaseEntity> entities = _entityRepository.GetAllEntities();
-
-            User? user = entities.OfType<User>().FirstOrDefault(x => x.Phone == phone);
-
-            return Task.FromResult(user);
+            User? entity = _getMockRepository.FindEntity(x => x.Phone == phone);
+            return Task.FromResult(entity);
         }
 
         public async Task InsertUser(User user)

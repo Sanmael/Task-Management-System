@@ -14,7 +14,7 @@ namespace Domain.Entitys
 
         public Person(string firstName, string lastName, int age, DateTime birthday, decimal salary, JobPosition jobPosition)
         {
-            CreateDate = DateTime.Now;
+            CreationDate = DateTime.Now;
             UpdateDate = DateTime.Now;
             FirstName = firstName;
             LastName = lastName;

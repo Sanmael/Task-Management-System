@@ -13,13 +13,13 @@ namespace Domain.Entitys
             Email = email;
             Phone = phone;
             NickName = nickName;      
-            CreateDate = DateTime.Now;
+            CreationDate = DateTime.Now;
             UpdateDate = DateTime.Now;
         }
         public User(long id, DateTime creationDate, DateTime updateDate, string password, string email, string phone, string nickName)
         {
             Id = id;
-            CreateDate = creationDate;
+            CreationDate = creationDate;
             UpdateDate = updateDate;
             Password = password;
             Email = email;
