@@ -1,10 +1,4 @@
-﻿using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Domain.Entitys
 {
     public class User : BaseEntity
@@ -12,14 +6,25 @@ namespace Domain.Entitys
         public string NickName { get; private set; } 
         public string Password { get; private set; }
         public string Email { get; private set; } 
-        public string Phone { get; private set; }                  
-
+        public string Phone { get; private set; }                          
         public User(string password, string email, string phone, string nickName)
         {            
             Password = password;
             Email = email;
             Phone = phone;
-            NickName = nickName;            
+            NickName = nickName;      
+            CreateDate = DateTime.Now;
+            UpdateDate = DateTime.Now;
+        }
+        public User(long id, DateTime creationDate, DateTime updateDate, string password, string email, string phone, string nickName)
+        {
+            Id = id;
+            CreateDate = creationDate;
+            UpdateDate = updateDate;
+            Password = password;
+            Email = email;
+            Phone = phone;
+            NickName = nickName;
         }
         public void ReseteUserNickName(string nickName)
         {
@@ -41,6 +46,5 @@ namespace Domain.Entitys
             Phone = phone;
             UpdateDate= DateTime.Now;
         }
-
     }
 }

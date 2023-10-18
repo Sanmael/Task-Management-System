@@ -1,6 +1,4 @@
 ﻿using Domain.Enums;
-using Microsoft.VisualBasic;
-using System.Numerics;
 
 namespace Domain.Entitys
 {
@@ -15,7 +13,6 @@ namespace Domain.Entitys
         public TaskPriorityType PriorityType { get; private set; }
         public Enums.TaskStatus TaskStatus { get; private set; }
         public Project Project { get; private set; }
-
         public ProjectTask(Person assignee, Person createdBy, string title, string description, DateTime dueDate, DateTime deliveryDate, TaskPriorityType priorityType, Enums.TaskStatus taskStatus, Project project)
         {
             Assignee = assignee;
@@ -28,7 +25,6 @@ namespace Domain.Entitys
             TaskStatus = taskStatus;
             Project = project;
         }
-
         public void UpdateAssignee(Person assignee)
         {
             Assignee = assignee;           
@@ -40,7 +36,6 @@ namespace Domain.Entitys
             DueDate = dueDate;
             UpdateDate = DateTime.Now;
         }
-
         public void UpdateTaskStatus(Enums.TaskStatus taskStatus)
         {
             TaskStatus = taskStatus;

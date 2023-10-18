@@ -9,13 +9,11 @@ namespace DataAccess.Repositories
 {
     public class BaseRepository : IBaseRepository
     {
-        private readonly DapperSession _dapperSession;
-
-        public BaseRepository(DapperSession dapperSession)
+        private readonly ISession _session;
+        public BaseRepository(ISession session)
         {
-            _dapperSession = dapperSession;
+            _session = session;
         }
-
         public async Task DeleteAsync(BaseEntity entity)
         {
             try
@@ -24,7 +22,7 @@ namespace DataAccess.Repositories
 
                 object id = typeof(BaseEntity).GetProperty("Id")!.GetValue(entity, null)!;
 
-                await _dapperSession.DbConnection.ExecuteAsync(sql, id, _dapperSession.Transaction);
+                await _session.Connection.ExecuteAsync(sql, id, _session.DbTransaction);
             }
             catch (Exception)
             {
@@ -37,7 +35,7 @@ namespace DataAccess.Repositories
             {
                 string sql = $"INSERT INTO [{typeof(BaseEntity).Name}] ({GetColumns<BaseEntity>()}) OUTPUT INSERTED.Id VALUES ({GetParameters<BaseEntity>()})";
 
-                Guid id = await _dapperSession.DbConnection.QuerySingleAsync<Guid>(sql, entity, null);
+                Guid id = await _session.Connection.QuerySingleAsync<Guid>(sql, entity, null);
 
                 typeof(BaseEntity).GetProperty("Id")!.SetValue(entity, id);
             }
@@ -51,7 +49,7 @@ namespace DataAccess.Repositories
         {
             try
             {
-                await _dapperSession.DbConnection.UpdateAsync(entity, _dapperSession.Transaction);
+                await _session.Connection.UpdateAsync(entity, _session.DbTransaction);
             }
             catch (Exception)
             {
