@@ -12,6 +12,6 @@ namespace Domain.Interfaces
         public Task<User?> GetUserById(long id);
         public Task InsertUser(User user);
         public Task<User?> GetUserByEmail(string email);
-        public Task<User?> GetUserByPhoneNumber(string phone);
+        public Task<User?> GetUserByPhoneNumber(string phone);        
     }
 }

@@ -2,8 +2,7 @@
 using Domain.Entitys;
 using Domain.Interfaces;
 
-
-namespace DataAccess.Tests.BaseRepository
+namespace MockDataAccess.Tests.BaseRepository
 {
     public class BaseMockRepository : IBaseRepository
     {

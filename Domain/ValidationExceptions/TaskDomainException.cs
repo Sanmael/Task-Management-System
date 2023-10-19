@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.ValidationExceptions
 {
-    public class DomainException : Exception
+    public class TaskDomainException : Exception
     {
-        public DomainException(string message) : base(message) { }
+        public TaskDomainException(string message) : base(message) { }
     }
 }

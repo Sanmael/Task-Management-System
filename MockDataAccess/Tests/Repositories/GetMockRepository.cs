@@ -1,15 +1,6 @@
-﻿using Domain.Entitys;
-using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static Slapper.AutoMapper;
+﻿using DataAccess.Tests.Repositories;
 
-namespace DataAccess.Tests.Repositories
+namespace MockDataAccess.Tests.Repositories
 {
     public class GetMockRepository<BaseEntity>
     {

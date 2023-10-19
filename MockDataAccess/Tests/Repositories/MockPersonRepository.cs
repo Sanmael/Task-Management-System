@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 
 
-namespace DataAccess.Tests.Repositories
+namespace MockDataAccess.Tests.Repositories
 {
     public class MockPersonRepository : IPersonRepository
     {

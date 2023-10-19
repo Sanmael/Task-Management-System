@@ -1,10 +1,7 @@
-﻿using Domain.DomainServices;
-using Domain.Entitys;
+﻿using Domain.Entitys;
 using Domain.Interfaces;
-using static Slapper.AutoMapper;
 
-
-namespace DataAccess.Tests.Repositories
+namespace MockDataAccess.Tests.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
