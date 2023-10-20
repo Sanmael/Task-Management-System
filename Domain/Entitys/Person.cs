@@ -4,7 +4,7 @@ namespace Domain.Entitys
 {
     public class Person : BaseEntity
     {
-       
+        public long UserId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public int Age { get; private set; }
@@ -12,8 +12,9 @@ namespace Domain.Entitys
         public decimal Salary { get; private set; }
         public JobPosition JobPosition { get; private set; }
 
-        public Person(string firstName, string lastName, int age, DateTime birthday, decimal salary, JobPosition jobPosition)
+        public Person(long userId, string firstName, string lastName, int age, DateTime birthday, decimal salary, JobPosition jobPosition)
         {
+            UserId = userId;
             CreationDate = DateTime.Now;
             UpdateDate = DateTime.Now;
             FirstName = firstName;
@@ -21,7 +22,7 @@ namespace Domain.Entitys
             Age = age;
             Birthday = birthday;
             Salary = salary;
-            JobPosition = jobPosition;
+            JobPosition = jobPosition;            
         }
         public void UpdateJobPosition(JobPosition jobPosition, decimal newSalary)
         {

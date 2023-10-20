@@ -20,6 +20,9 @@ namespace Infrastructure
         public static IServiceCollection AddServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ProjectService>();
+            services.AddScoped<ProjectTaskService>();
+            services.AddScoped<PersonService>();
             services.AddScoped<IUserValidation, UserValidation>();
             return services;
         }
@@ -29,6 +32,8 @@ namespace Infrastructure
             services.AddSingleton<MockEntityRepository>();
             services.AddScoped<IUserRepository, MockUserRepository>();
             services.AddScoped<IPersonRepository, MockPersonRepository>();
+            services.AddScoped<IProjectRepository, MockProjectRepository>();
+            services.AddScoped<IProjectTaskRepository, MockProjectTaskRepository>();
 
             return services;
         }

@@ -1,8 +1,8 @@
-﻿using DataAccess.Tests.Repositories;
+﻿using Domain.Entitys;
 
 namespace MockDataAccess.Tests.Repositories
 {
-    public class GetMockRepository<BaseEntity>
+    public class GetMockRepository<T>
     {
         private readonly MockEntityRepository _entityRepository;
 
@@ -11,19 +11,19 @@ namespace MockDataAccess.Tests.Repositories
             _entityRepository = entityRepository;
         }
 
-        public BaseEntity? FindEntity(Func<BaseEntity, bool> predicate)
+        public T? FindEntity(Func<T, bool> predicate)
         {
-            var entitys = _entityRepository.GetAllEntities();
+            List<BaseEntity> baseEntitys = _entityRepository.GetAllEntities();
 
-            var entity = entitys.OfType<BaseEntity>().FirstOrDefault(predicate);
+            T? entity = baseEntitys.OfType<T>().FirstOrDefault(predicate);
 
             return entity;
         }
-        public List<BaseEntity?> FindEntities(Func<BaseEntity, bool> predicate)
+        public List<T?> FindEntities(Func<T, bool> predicate)
         {
-            List<Domain.Entitys.BaseEntity> entitys = _entityRepository.GetAllEntities();
+            List<BaseEntity> baseEntitys = _entityRepository.GetAllEntities();
 
-            List<BaseEntity?> entitysFilter = entitys.OfType<BaseEntity>().Where(predicate).ToList();
+            List<T?> entitysFilter = baseEntitys.OfType<T>().Where(predicate).ToList();
 
             return entitysFilter;
         }

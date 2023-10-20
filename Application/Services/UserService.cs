@@ -23,8 +23,10 @@ namespace Application.Services
             try
             {
                 User user = userDTO.ToEntity();
+
                 await _userValidation.ValidateCreationNewUser(user);
                 await _userRepository.InsertUser(user);
+
                 userDTO.Id = user.Id;
             }
             catch (TaskDomainException ex)
@@ -39,14 +41,7 @@ namespace Application.Services
             if (user == null)
                 return null;
 
-            UserDTO userDTO = new UserDTO()
-            {
-                Id = id,
-                NickName = user.NickName,
-                Password = user.Password,
-                Email = user.Email,
-                Phone = user.Phone,
-            };
+            UserDTO userDTO = new UserDTO(user);
 
             return userDTO;
         }
