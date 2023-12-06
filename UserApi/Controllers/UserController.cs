@@ -1,6 +1,7 @@
 ﻿using Application.DTO;
 using Application.Exceptions;
 using Application.Interfaces;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserApi.Controllers
@@ -20,13 +21,17 @@ namespace UserApi.Controllers
         {
             try
             {
-                await _userService.InsertUser(userDTO);
-                return Ok(userDTO);
+                IBaseResponse baseResponse = await _userService.InsertUserAsync(userDTO);
+
+                if (baseResponse.IsSuccess)
+                    return Ok(baseResponse.Data);
+                
+                return BadRequest(baseResponse.Data);
             }
             catch (TaskApplicatioException ex)
             {
                 return BadRequest(ex.Message);
-            }            
+            }
         }
         [HttpGet]
         public async Task<IActionResult> GetUserAsync(long id)

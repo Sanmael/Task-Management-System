@@ -5,7 +5,6 @@ namespace MockDataAccess.Tests.Repositories
     public class GetMockRepository<T>
     {
         private readonly MockEntityRepository _entityRepository;
-
         public GetMockRepository(MockEntityRepository entityRepository)
         {
             _entityRepository = entityRepository;
@@ -23,7 +22,7 @@ namespace MockDataAccess.Tests.Repositories
         {
             List<BaseEntity> baseEntitys = _entityRepository.GetAllEntities();
 
-            List<T?> entitysFilter = baseEntitys.OfType<T>().Where(predicate).ToList();
+            List<T?> entitysFilter = baseEntitys.OfType<T>().Where(predicate).ToList()!;
 
             return entitysFilter;
         }

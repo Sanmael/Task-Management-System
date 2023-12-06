@@ -1,4 +1,5 @@
 ﻿using Application.DTO;
+using Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        public Task InsertUser(UserDTO userDTO);
+        public Task<IBaseResponse> InsertUserAsync(UserDTO userDTO);
         public Task<UserDTO?> GetUserById(long id);
     }
 }

@@ -8,8 +8,8 @@ namespace Domain.ValidationExceptions
 {
     public static class ExceptionMessages
     {
-        public static string EmailAlreadyExists = "O e-mail '{email}' já está em uso. Escolha um e-mail diferente.";
-        public static string PhoneAlreadyExists = "O numero de Telefone '{phone}' já está em uso. Escolha um numero diferente.";
+        public static string EmailAlreadyExists = "O E-mail '{0}' já está em uso. Escolha um e-mail diferente.";
+        public static string PhoneAlreadyExists = "O numero de Telefone '{0}' já está em uso. Escolha um numero diferente.";
         
     }
 }

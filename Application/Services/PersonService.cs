@@ -6,7 +6,7 @@ using Domain.Interfaces;
 
 namespace Application.Services
 {
-    public class PersonService
+    public class PersonService 
     {
         private readonly IPersonRepository _personRepository;
 
@@ -19,6 +19,8 @@ namespace Application.Services
             Person person = new Person(personDTO.UserId, personDTO.FirstName, personDTO.LastName, personDTO.Age, personDTO.Birthday, personDTO.Salary, (JobPosition)personDTO.JobPosition);
 
             await _personRepository.InsertPerson(person);
+
+            personDTO.Id = person.Id;            
         }
         public async Task<PersonDTO?> GetPersonById(long id)
         {
@@ -27,7 +29,7 @@ namespace Application.Services
             if (person == null)
                 return null;
 
-            PersonDTO personDTO = new PersonDTO(person.Id, person.FirstName, person.LastName, person.Age, person.Birthday, person.Salary, (int)person.JobPosition);
+            PersonDTO personDTO = new PersonDTO(person.Id, 0, person.FirstName, person.LastName, person.Age, person.Birthday, person.Salary, (int)person.JobPosition);
 
             return personDTO;
         }

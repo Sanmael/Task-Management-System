@@ -10,12 +10,10 @@ namespace ProjectApi.Controllers
     public class ProjectTaskController : ControllerBase
     {
         private readonly ProjectTaskService _projectTaskService;
-
         public ProjectTaskController(ProjectTaskService projectTaskService)
         {
             _projectTaskService = projectTaskService;
         }
-
         [HttpPost]
         public async Task<IActionResult> CreateTask(ProjectTaskRequest projectTaskRequest)
         {

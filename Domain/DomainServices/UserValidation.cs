@@ -21,14 +21,14 @@ namespace Domain.DomainServices
             User? user = await _userRepository.GetUserByEmail(email);
 
             if (user != null)
-                throw new TaskDomainException(ExceptionMessages.EmailAlreadyExists);
+                throw new TaskDomainException(string.Format(ExceptionMessages.EmailAlreadyExists, user.Email));
         }
         public async Task PhoneAvailabilityCheckAsync(string phone)
         {
             User? user = await _userRepository.GetUserByPhoneNumber(phone);
 
             if (user != null)
-                throw new TaskDomainException(ExceptionMessages.PhoneAlreadyExists);
+                throw new TaskDomainException(string.Format(ExceptionMessages.PhoneAlreadyExists,user.Phone));
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Application.Services
 
             await _projectRepository.InsertProject(project);
         }
-        public async Task<ProjectDTO> GetProjectById(long id)
+        public async Task<ProjectDTO?> GetProjectById(long id)
         {
             Project project = await _projectRepository.GetProjectById(id);
 
@@ -35,7 +35,7 @@ namespace Application.Services
 
             List<ProjectTaskDTO>? projectTasksDTO = await _projectTaskService.GetAllTasksByProjectId(project.Id);
 
-            ProjectDTO projectDTO = new ProjectDTO(project.Id, personCreatedBy, project.Name, project.Description, project.DueDate, project.DeliveryDate, project.DeletionDate);
+            ProjectDTO projectDTO = new ProjectDTO(project.Id, personCreatedBy!, project.Name, project.Description, project.DueDate, project.DeliveryDate, project.DeletionDate);
 
             if (projectTasksDTO != null)
             {

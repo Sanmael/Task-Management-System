@@ -1,0 +1,42 @@
+﻿@model FrontEnd.Models.UserModel
+
+@{
+    ViewData["Title"] = "CreateANewUser";
+}
+
+<h1>Criar um novo usuario</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">                               
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" id="passwordId" class="form-control" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" id="emailId" class="form-control" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" id="phoneId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NickName" class="control-label"></label>
+                <input asp-for="NickName" id="nickNameId" class="form-control" />                
+            </div>
+            <div class="form-group">
+                <input type="button" id="buttonCreateUserId" value="Create" class="btn btn-primary" />
+            </div>        
+    </div>
+</div>
+<script src="~/js/jquery-3.7.1.min.js"></script>
+<script src="~/js/CreateUser.js"></script>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

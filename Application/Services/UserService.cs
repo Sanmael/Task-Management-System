@@ -18,7 +18,7 @@ namespace Application.Services
             _userValidation = userValidation;
         }
 
-        public async Task InsertUser(UserDTO userDTO)
+        public async Task<IBaseResponse> InsertUserAsync(UserDTO userDTO)
         {
             try
             {
@@ -28,10 +28,12 @@ namespace Application.Services
                 await _userRepository.InsertUser(user);
 
                 userDTO.Id = user.Id;
+
+                return new SuccessBaseResponse<UserDTO>("Usuario Cadastrado", userDTO);
             }
             catch (TaskDomainException ex)
             {
-                throw new TaskApplicatioException(ex.Message);
+                return new FailureBaseResponse(ex.Message, null);
             }
         }
         public async Task<UserDTO?> GetUserById(long id)
